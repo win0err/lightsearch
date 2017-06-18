@@ -1,0 +1,12 @@
+{
+  "name": "win0err/lightsearch",
+  "description": "A search engine for websites written in PHP",
+  "minimum-stability": "dev",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Sergei Kolesnikov",
+      "email": "win0err@gmail.com"
+    }
+  ]
+}
