@@ -21,6 +21,8 @@ class Finder {
 	 */
 	protected $storage = null;
 
+	// ToDo: Вынести блэклист в отдельный класс
+	public static $blacklist = ['и', 'на', 'в', 'для', 'под', 'из', 'за', 'к', 'с', 'над', 'у', 'или'];
 
 	public function __construct(Config $config) {
 
@@ -30,7 +32,19 @@ class Finder {
 
 	public function find(Query $query) {
 
-		return $this->storage->getIndexablesByWords( self::explode( addslashes( $query->getText() ) ) );
+		$words = self::explode( addslashes( $query->getText() ) );
+
+		// ToDo: Вынести блэклист в отдельный класс
+		$words = array_diff( $words, static::$blacklist );
+
+		$mp = $this->morphologyProcessor;
+		$words = array_map(
+			function ($word) use ($mp) {
+
+				return $mp::apply( (string)$word );
+			}, $words );
+
+		return $this->storage->getIndexablesByWords( $words );
 	}
 
 	/**

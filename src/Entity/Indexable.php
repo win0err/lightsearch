@@ -71,7 +71,7 @@ class Indexable {
 	 */
 	public function getExternalId(): string {
 
-		return $this->externalId;
+		return (string)$this->externalId;
 	}
 
 	/**
@@ -89,7 +89,7 @@ class Indexable {
 	 */
 	public function getTitle(): string {
 
-		return $this->title;
+		return (string)$this->title;
 	}
 
 	/**
@@ -125,7 +125,7 @@ class Indexable {
 	 */
 	public function getUrl(): string {
 
-		return $this->url;
+		return (string)$this->url;
 	}
 
 	/**
@@ -143,7 +143,7 @@ class Indexable {
 	 */
 	public function getText(): string {
 
-		return $this->text;
+		return (string)$this->text;
 	}
 
 	/**
@@ -162,7 +162,7 @@ class Indexable {
 	 */
 	public function getHash(): string {
 
-		return $this->hash;
+		return (string)$this->hash;
 	}
 
 	/**
@@ -195,7 +195,7 @@ class Indexable {
 	 */
 	public function getRating(): float {
 
-		return $this->rating;
+		return (float)$this->rating;
 	}
 
 	/**

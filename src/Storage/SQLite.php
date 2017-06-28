@@ -154,7 +154,7 @@ class SQLite implements StorageInterface {
 				new \DateTime( $indexablesFound['date'] ),
 				$indexablesFound['url'],
 				$indexablesFound['hash'],
-				$indexablesFound['rating_rate']
+				$indexablesFound['rating']
 			);
 		}
 	}
@@ -194,7 +194,9 @@ class SQLite implements StorageInterface {
 		for( $i = 0; $i < sizeof( $wordsIds ); $i++ ) {
 
 			$st = $this->pdo->prepare( 'INSERT INTO "fulltext_index" (indexable_id, word_id, position) VALUES (?, ?, ?)' );
-			$st->execute( [$indexable->getId(), $wordsIds[$i], $wordsPositions[$i]] );
+if(is_null($wordsIds[$i]) || is_null($wordsPositions[$i]))
+continue;
+			$st->execute( [$indexable->getId(), (string)$wordsIds[$i], $wordsPositions[$i]] );
 		}
 
 		$this->pdo->commit();

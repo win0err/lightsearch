@@ -30,11 +30,11 @@ class Query {
 	public function __construct($text) { $this->text = $text; }
 
 	/**
-	 * @return string
+	 * @return string|null
 	 */
-	public function getText(): string {
+	public function getText() {
 
-		return $this->text;
+		return (string)$this->text;
 	}
 
 	/**
