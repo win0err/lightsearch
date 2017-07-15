@@ -19,6 +19,9 @@ class SQLite implements StorageInterface {
 
 		if (is_null( $pdo )) {
 
+			if (!is_dir( dirname( __FILE__ ) . '/../../data/' ))
+				@mkdir( dirname( __FILE__ ) . '/../../data' );
+
 			$dbLocation = realpath( dirname( __FILE__ ) . '/../../data' ) . '/fulltext_index.sqlite';
 			$this->pdo = new \PDO( 'sqlite:' . $dbLocation );
 		} else $this->pdo = $pdo;
@@ -194,8 +197,8 @@ class SQLite implements StorageInterface {
 		for( $i = 0; $i < sizeof( $wordsIds ); $i++ ) {
 
 			$st = $this->pdo->prepare( 'INSERT INTO "fulltext_index" (indexable_id, word_id, position) VALUES (?, ?, ?)' );
-if(is_null($wordsIds[$i]) || is_null($wordsPositions[$i]))
-continue;
+			if (is_null( $wordsIds[$i] ) || is_null( $wordsPositions[$i] ))
+				continue;
 			$st->execute( [$indexable->getId(), (string)$wordsIds[$i], $wordsPositions[$i]] );
 		}
 
