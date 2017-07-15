@@ -32,3 +32,6 @@ $config->setStorage( new SQLite() );
 // Морфологический анализатор — Стеммер Портера для русского языка 
 $config->setMorphologyProcessor( new PorterRussian() ); 
 ```
+
+---
+Далее: [Индексирование](indexing.md)

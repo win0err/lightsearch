@@ -28,3 +28,6 @@ $indexer->index($indexable);
 
 ## Удаление материала из индекса
 Для удаления материала из индекса, нужно использовать метод «removeByExternalId», передав ему в качестве параметра внешний идентификатор: `$indexer->removeByExternalId('post.example’);`
+
+---
+Далее: [Поиск по индексу](searching.md)
