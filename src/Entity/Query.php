@@ -5,78 +5,79 @@
 
 namespace win0err\LightSearch\Entity;
 
+class Query
+{
 
-class Query {
+    /**
+     * @var int
+     */
+    protected $limit = 10;
+    /**
+     * @var int
+     */
+    protected $offset = 0;
 
-	/**
-	 * @var int
-	 */
-	protected $limit = 10;
-	/**
-	 * @var int
-	 */
-	protected $offset = 0;
+    /**
+     * @var string
+     */
+    protected $text = "";
 
-	/**
-	 * @var string
-	 */
-	protected $text = "";
+    /**
+     * Query constructor.
+     *
+     * @param string $text
+     */
+    public function __construct($text)
+    {
+        $this->text = $text;
+    }
 
-	/**
-	 * Query constructor.
-	 *
-	 * @param string $text
-	 */
-	public function __construct($text) { $this->text = $text; }
+    /**
+     * @return string|null
+     */
+    public function getText()
+    {
+        return (string)$this->text;
+    }
 
-	/**
-	 * @return string|null
-	 */
-	public function getText() {
-
-		return (string)$this->text;
-	}
-
-	/**
-	 * @param string $text
-	 */
-	public function setText(string $text) {
-
-		$this->text = $text;
-	}
-
-
-	/**
-	 * @return int
-	 */
-	public function getLimit(): int {
-
-		return $this->limit;
-	}
-
-	/**
-	 * @param int $limit
-	 */
-	public function setLimit(int $limit) {
-
-		$this->limit = $limit;
-	}
-
-	/**
-	 * @return int
-	 */
-	public function getOffset(): int {
-
-		return $this->offset;
-	}
-
-	/**
-	 * @param int $offset
-	 */
-	public function setOffset(int $offset) {
-
-		$this->offset = $offset;
-	}
+    /**
+     * @param string $text
+     */
+    public function setText(string $text)
+    {
+        $this->text = $text;
+    }
 
 
+    /**
+     * @return int
+     */
+    public function getLimit(): int
+    {
+        return $this->limit;
+    }
+
+    /**
+     * @param int $limit
+     */
+    public function setLimit(int $limit)
+    {
+        $this->limit = $limit;
+    }
+
+    /**
+     * @return int
+     */
+    public function getOffset(): int
+    {
+        return $this->offset;
+    }
+
+    /**
+     * @param int $offset
+     */
+    public function setOffset(int $offset)
+    {
+        $this->offset = $offset;
+    }
 }

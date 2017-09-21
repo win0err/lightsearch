@@ -5,66 +5,68 @@
 
 namespace win0err\LightSearch\Entity;
 
-
 use win0err\LightSearch\MorphologyProcessor\MorphologyProcessorInterface;
 use win0err\LightSearch\Storage\StorageInterface;
 
-class Config {
+class Config
+{
 
 
-	/**
-	 * @var MorphologyProcessorInterface
-	 */
-	protected $morphologyProcessor = null;
-	/**
-	 * @var StorageInterface
-	 */
-	protected $storage = null;
+    /**
+     * @var MorphologyProcessorInterface
+     */
+    protected $morphologyProcessor = null;
+    /**
+     * @var StorageInterface
+     */
+    protected $storage = null;
 
 
-	/**
-	 * @return MorphologyProcessorInterface
-	 */
-	public function getMorphologyProcessor(): MorphologyProcessorInterface {
+    /**
+     * @return MorphologyProcessorInterface
+     */
+    public function getMorphologyProcessor(): MorphologyProcessorInterface
+    {
+        if (is_null($this->morphologyProcessor)) {
+            throw new \Exception('Morphology Processor not defined');
+        }
 
-		if (is_null( $this->morphologyProcessor ))
-			throw new \Exception( 'Morphology Processor not defined' );
+        return $this->morphologyProcessor;
+    }
 
-		return $this->morphologyProcessor;
-	}
+    /**
+     * @param MorphologyProcessorInterface $morphologyProcessor
+     *
+     * @return Config
+     */
+    public function setMorphologyProcessor(MorphologyProcessorInterface $morphologyProcessor): Config
+    {
+        $this->morphologyProcessor = $morphologyProcessor;
 
-	/**
-	 * @param MorphologyProcessorInterface $morphologyProcessor
-	 *
-	 * @return Config
-	 */
-	public function setMorphologyProcessor(MorphologyProcessorInterface $morphologyProcessor): Config {
+        return $this;
+    }
 
-		$this->morphologyProcessor = $morphologyProcessor;
+    /**
+     * @return StorageInterface
+     */
+    public function getStorage(): StorageInterface
+    {
+        if (is_null($this->storage)) {
+            throw new \Exception('Storage not defined');
+        }
 
-		return $this;
-	}
+        return $this->storage;
+    }
 
-	/**
-	 * @return StorageInterface
-	 */
-	public function getStorage(): StorageInterface {
+    /**
+     * @param StorageInterface $storage
+     *
+     * @return Config
+     */
+    public function setStorage(StorageInterface $storage): Config
+    {
+        $this->storage = $storage;
 
-		if (is_null( $this->storage ))
-			throw new \Exception( 'Storage not defined' );
-
-		return $this->storage;
-	}
-
-	/**
-	 * @param StorageInterface $storage
-	 *
-	 * @return Config
-	 */
-	public function setStorage(StorageInterface $storage): Config {
-
-		$this->storage = $storage;
-
-		return $this;
-	}
+        return $this;
+    }
 }

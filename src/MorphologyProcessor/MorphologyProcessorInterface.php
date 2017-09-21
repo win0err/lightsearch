@@ -5,16 +5,16 @@
 
 namespace win0err\LightSearch\MorphologyProcessor;
 
-
 /**
  * Interface MorphologyProcessorInterface
  */
-interface MorphologyProcessorInterface {
+interface MorphologyProcessorInterface
+{
 
-	/**
-	 * @param string $word
-	 *
-	 * @return string
-	 */
-	public static function apply(string $word): string;
+    /**
+     * @param string $word
+     *
+     * @return string
+     */
+    public static function apply(string $word): string;
 }
