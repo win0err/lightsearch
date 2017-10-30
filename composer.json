@@ -2,7 +2,7 @@
   "name": "win0err/lightsearch",
   "description": "A search engine for websites written in PHP",
   "minimum-stability": "dev",
-  "license": "proprietary",
+  "license": "MIT",
   "authors": [
     {
       "name": "Sergei Kolesnikov",
