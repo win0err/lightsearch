@@ -6,6 +6,7 @@
 namespace win0err\LightSearch;
 
 use win0err\LightSearch\Entity\Config;
+use win0err\LightSearch\Entity\Indexable;
 use win0err\LightSearch\Entity\Query;
 use win0err\LightSearch\MorphologyProcessor\MorphologyProcessorInterface;
 use win0err\LightSearch\Storage\StorageInterface;
@@ -16,11 +17,11 @@ class Finder
     /**
      * @var MorphologyProcessorInterface
      */
-    protected $morphologyProcessor = null;
+    protected $morphologyProcessor;
     /**
      * @var StorageInterface
      */
-    protected $storage = null;
+    protected $storage;
 
     // ToDo: Вынести блэклист в отдельный класс
     public static $blacklist = ['и', 'на', 'в', 'для', 'под', 'из', 'за', 'к', 'с', 'над', 'у', 'или'];
@@ -41,14 +42,17 @@ class Finder
         };
         $words = array_map($applyMp, $words);
 
-        $queryWordsCount = sizeof($words);
+        $queryWordsCount = \count($words);
 
         // ToDo: Вынести блэклист в отдельный класс
         //$words = array_diff( $words, static::$blacklist );
 
         foreach ($this->storage->getIndexablesByWords($words) as $indexable) {
+            /**
+             * @var $indexable Indexable
+             */
             $titleByWords = array_map($applyMp, self::explode(self::clearHTML($indexable->getTitle())));
-            $newRating = $indexable->getRating() * (1 + 4 * sizeof(array_intersect($words, $titleByWords)) / $queryWordsCount);
+            $newRating = $indexable->getRating() * (1 + 4 * \count(array_intersect($words, $titleByWords)) / $queryWordsCount);
 
             $indexable->setRating($newRating);
 
@@ -66,7 +70,7 @@ class Finder
      *
      * @return array
      */
-    protected static function explode($contents)
+    protected static function explode($contents): array
     {
         return mb_split('[\s-]+', $contents);
     }

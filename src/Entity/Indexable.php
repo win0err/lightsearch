@@ -11,7 +11,7 @@ class Indexable
     /**
      * @var int
      */
-    protected $id = null;
+    protected $id;
     /**
      * @var string
      */

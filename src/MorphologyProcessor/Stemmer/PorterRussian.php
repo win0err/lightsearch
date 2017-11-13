@@ -221,7 +221,7 @@ class PorterRussian implements MorphologyProcessorInterface
         }
 
         if (isset(self::$stopList[$word])) {
-            return self::$stopList[$word] ? self::$stopList[$word] : $word;
+            return self::$stopList[$word] ?: $word;
         }
 
         $stem = $word;

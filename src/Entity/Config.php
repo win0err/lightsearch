@@ -15,11 +15,11 @@ class Config
     /**
      * @var MorphologyProcessorInterface
      */
-    protected $morphologyProcessor = null;
+    protected $morphologyProcessor;
     /**
      * @var StorageInterface
      */
-    protected $storage = null;
+    protected $storage;
 
 
     /**
@@ -27,7 +27,7 @@ class Config
      */
     public function getMorphologyProcessor(): MorphologyProcessorInterface
     {
-        if (is_null($this->morphologyProcessor)) {
+        if (null === $this->morphologyProcessor) {
             throw new \Exception('Morphology Processor not defined');
         }
 
@@ -51,7 +51,7 @@ class Config
      */
     public function getStorage(): StorageInterface
     {
-        if (is_null($this->storage)) {
+        if (null === $this->storage) {
             throw new \Exception('Storage not defined');
         }
 

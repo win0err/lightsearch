@@ -20,7 +20,7 @@ class Query
     /**
      * @var string
      */
-    protected $text = "";
+    protected $text = '';
 
     /**
      * Query constructor.

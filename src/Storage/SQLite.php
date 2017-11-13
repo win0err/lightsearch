@@ -17,12 +17,13 @@ class SQLite implements StorageInterface
 
     public function __construct(\PDO $pdo = null)
     {
-        if (is_null($pdo)) {
-            if (!is_dir(dirname(__FILE__) . '/../../data/')) {
-                @mkdir(dirname(__FILE__) . '/../../data');
+        if (null === $pdo) {
+            if (!mkdir(__DIR__ . '/../../data') && !is_dir(__DIR__ . '/../../data')) {
+                throw new \RuntimeException(sprintf('Directory "%s" was not created', __DIR__ . '/../../data'));
             }
 
-            $dbLocation = realpath(dirname(__FILE__) . '/../../data') . '/fulltext_index.sqlite';
+
+            $dbLocation = \dirname(__DIR__) . '/data' . '/fulltext_index.sqlite';
             $this->pdo = new \PDO('sqlite:' . $dbLocation);
         } else {
             $this->pdo = $pdo;
@@ -175,7 +176,7 @@ class SQLite implements StorageInterface
         }
 
         // Если нашли все нужные слова, возвращаем
-        if (sizeof($preparedWords) == sizeof($ids)) {
+        if (\count($preparedWords) == \count($ids)) {
             return $ids;
         }
 
@@ -193,9 +194,9 @@ class SQLite implements StorageInterface
     {
         $this->pdo->beginTransaction();
 
-        for ($i = 0; $i < sizeof($wordsIds); $i++) {
+        for ($i = 0, $iMax = \count($wordsIds); $i < $iMax; $i++) {
             $st = $this->pdo->prepare('INSERT INTO "fulltext_index" (indexable_id, word_id, position) VALUES (?, ?, ?)');
-            if (is_null($wordsIds[$i]) || is_null($wordsPositions[$i])) {
+            if (null === $wordsIds[$i] || null === $wordsPositions[$i]) {
                 continue;
             }
             $st->execute([$indexable->getId(), (string)$wordsIds[$i], $wordsPositions[$i]]);

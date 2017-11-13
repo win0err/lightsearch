@@ -15,9 +15,9 @@ use win0err\LightSearch\Entity\Indexable;
 $indexable = new Indexable();
 $indexable
 	->setExternalId('post.example') // Внешний ID для идентификации материала в проекте
-	>setTitle('Пример индексирования')  // Заголовок материала
+	->setTitle('Пример индексирования')  // Заголовок материала
 	->setDate(new \DateTime("now")) // Дата создания материала
-	->setUrl("/example.html") // Ссылка на материал
+	->setUrl('/example.html') // Ссылка на материал
 	->setText($text); // Текст материала
 // Добавляем материал в индекс:
 $indexer->index($indexable);

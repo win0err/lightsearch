@@ -16,11 +16,11 @@ class Indexer
     /**
      * @var MorphologyProcessorInterface
      */
-    protected $morphologyProcessor = null;
+    protected $morphologyProcessor;
     /**
      * @var StorageInterface
      */
-    protected $storage = null;
+    protected $storage;
 
 
     public function __construct(Config $config)
@@ -104,7 +104,7 @@ class Indexer
      *
      * @return array
      */
-    protected static function explode($contents)
+    protected static function explode($contents): array
     {
         return mb_split('[\s-]+', $contents);
     }
